@@ -9,7 +9,6 @@ namespace SnakeAndLadder
         public static int currentPosition = 0;
         public static int selectdOption = 0;
         static Random random = new Random();
-
         public static int throwDice()
         {
             return random.Next(1, 7);
@@ -22,23 +21,26 @@ namespace SnakeAndLadder
 
         public static int playerOption()
         {
-            int throwDices = throwDice();
-            int selectdOption = checkForOption();
-            if (selectdOption == 2)
+            while (currentPosition < END_POSITION - 1)
             {
-                currentPosition += throwDices;
-            }
-            else if (selectdOption == 3)
-            {
-                currentPosition -= throwDices;
-                if (currentPosition < 0)
+                int throwDices = throwDice();
+                int selectdOption = checkForOption();
+                if (selectdOption == 2)
                 {
-                    currentPosition = START_POSITION;
+                    currentPosition += throwDices;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Do nothing player stay in same poistion");
+                else if (selectdOption == 3)
+                {
+                    currentPosition -= throwDices;
+                    if (currentPosition < 0)
+                    {
+                        currentPosition = START_POSITION;
+                    }
+                }
+                else
+                {
+                    //Console.WriteLine("Do nothing player stay in same position");
+                }
             }
             return currentPosition;
         }
